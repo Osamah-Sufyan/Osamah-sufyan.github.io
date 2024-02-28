@@ -1,65 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="rtl" lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Title</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        main {
-            padding: 20px;
-        }
-        article {
-            margin-bottom: 20px;
-        }
-        h2 {
-            color: #333;
-        }
-        time {
-            font-size: 0.875em;
-            color: #666;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<title>مجلة المعرفة</title>
+<script>
+function loadContent(page) {
+    const contentArea = document.getElementById('content-area');
+    fetch(page)
+        .then(response => response.text())
+        .then(data => {
+            contentArea.innerHTML = data;
+        })
+        .catch(err => console.log(err));
+}
+</script>
 </head>
 <body>
-    <header>
-        <h1>Blog Title</h1>
-    </header>
-    <main>
-        <article>
-            <h2>Article Title 1</h2>
-            <time datetime="2024-02-28">February 28, 2024</time>
-            <p>This is the summary of the article content. It's a brief overview of what the article will discuss. You can add more paragraphs or images as needed to flesh out the article.</p>
-        </article>
-        <article>
-            <h2>Article Title 2</h2>
-            <time datetime="2024-02-27">February 27, 2024</time>
-            <p>This is another article summary. Each article can cover different topics or continue discussions from previous articles. Use this space to engage your readers.</p>
-        </article>
-        <!-- Add more articles here -->
-    </main>
-    <footer>
-        <p>&copy; 2024 Blog Title. All rights reserved.</p>
-    </footer>
+
+<header>مجلة المعرفة</header>
+
+<ul class="tabs">
+    <li class="tab" onclick="loadContent('main.html')">الرئيسية</li>
+    <li class="tab" onclick="loadContent('team.html')">فريق العمل</li>
+    <li class="tab" onclick="loadContent('articles.html')">جميع المقالات</li>
+    <li class="tab" onclick="loadContent('contact.html')">تواصل معنا</li>
+</ul>
+
+<div id="content-area">
+    <!-- Content will be loaded here -->
+</div>
+
+<footer>&copy; 2024 مجلة المعرفة. جميع الحقوق محفوظة.</footer>
+
 </body>
 </html>
