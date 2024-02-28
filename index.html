@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="style.css">
-<title>مجلة المعرفة</title>
+<title>آفاف الفيزياء </title>
 <script>
 function loadContent(page) {
     const contentArea = document.getElementById('content-area');
@@ -18,7 +20,7 @@ function loadContent(page) {
 </head>
 <body>
 
-<header>مجلة المعرفة</header>
+<header> آفاق الفيزياء</header>
 
 <ul class="tabs">
     <li class="tab" onclick="loadContent('main.html')">الرئيسية</li>
@@ -30,6 +32,20 @@ function loadContent(page) {
 <div id="content-area">
     <!-- Content will be loaded here -->
 </div>
+<div>
+    <h2 class="title0"> مجلة آفاق الفيزياء</h2>
+    <p class="paragraph0_1">
+        المجلة الأولى من نوعها في الوطن العربي. تجدون هنا مقالات دورية حول تبسيط الفيزياء و الرياضيات المتقدمة.    
+        
+        
+    </p>
+    
+</div>
+<div id="latex-formula">
+    \( x = \frac{{-b \pm \sqrt{{b^2 - 4ac}}}}{{2a}} \)
+</div>
+
+
 
 <footer>&copy; 2024 مجلة المعرفة. جميع الحقوق محفوظة.</footer>
 
