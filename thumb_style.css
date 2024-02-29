@@ -1,0 +1,29 @@
+.articles {
+    font-family: Arial, sans-serif;
+}
+
+.article-thumbnail {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-bottom: 20px; /* Spacing between thumbnails */
+}
+
+.article-thumbnail img {
+    width: 100px; /* Adjust based on your preference */
+    height: 100px; /* Adjust for square images, or use auto for aspect ratio */
+    margin-right: 15px;
+    margin-left: 20px;  /* Spacing between image and text */
+    object-fit: cover; /* Ensures the image covers the space without distortion */
+    border-radius: 5px; /* Optional: adds rounded corners to the image */
+}
+
+.article-info h3 {
+    margin: 0 0 10px 0; /* Adjusts spacing below the title */
+    font-size: 18px; /* Adjust title size */
+}
+
+.article-info p {
+    margin: 0; /* Adjusts paragraph margin */
+    color: #666; /* Lighter text color for the description */
+}
