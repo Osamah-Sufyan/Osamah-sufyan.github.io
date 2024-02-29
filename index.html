@@ -9,16 +9,33 @@
 <link rel="stylesheet" href="/style.css">
 <title>آفاف الفيزياء </title>
 <script>
-function loadContent(page) {
-    const contentArea = document.getElementById('content-area');
-    fetch(page)
-        .then(response => response.text())
-        .then(data => {
-            contentArea.innerHTML = data;
-        })
-        .catch(err => console.log(err));
-}
-</script>
+    function loadContent(page) {
+        const contentArea = document.getElementById('content-area');
+        const additionalContent = document.getElementById('additional-content');
+    
+        // Remove additional content
+        if (additionalContent) {
+            additionalContent.remove();
+        }
+    
+        // Fetch new content
+        fetch(page)
+            .then(response => response.text())
+            .then(data => {
+                // Create a new div to contain the additional content
+                const newAdditionalContent = document.createElement('div');
+                newAdditionalContent.innerHTML = data;
+    
+                // Set id to the new container div
+                newAdditionalContent.id = 'additional-content';
+    
+                // Append new content to the content area
+                contentArea.appendChild(newAdditionalContent);
+            })
+            .catch(err => console.log(err));
+    }
+    </script>
+    
 </head>
 <body>
 
@@ -34,17 +51,15 @@ function loadContent(page) {
 <div id="content-area">
     <!-- Content will be loaded here -->
 </div>
-<div>
+<div id="additional-content">
     <h2 class="title0"> مجلة آفاق الفيزياء</h2>
     <p class="paragraph0_1">
         المجلة الأولى من نوعها في الوطن العربي. تجدون هنا مقالات دورية حول تبسيط الفيزياء و الرياضيات المتقدمة.    
-        
-        
     </p>
     
-</div>
-<div id="latex-formula">
-    \( x = \frac{{-b \pm \sqrt{{b^2 - 4ac}}}}{{2a}} \)
+    <div id="latex-formula">
+        \( x = \frac{{-b \pm \sqrt{{b^2 - 4ac}}}}{{2a}} \)
+    </div>
 </div>
 
 
