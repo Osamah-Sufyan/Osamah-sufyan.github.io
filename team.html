@@ -1,9 +1,104 @@
-<div>
-    <h2>الفريق</h2>
-    <p>
-        تعرف على الفريق وراء المجلة
+<!DOCTYPE html>
+<html dir="rtl" lang="ar"><head>
+    <script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<title>آفاف الفيزياء </title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Thumbnails</title>
+    <style>
+        
+        .container {
+            display: flex; /* Activates Flexbox layout for its children */
+            flex-wrap: wrap; /* Allows items to wrap onto the next line if the space is tight */
+            justify-content: space-around; /* Distributes space around items for a nice padding effect */
+            align-items: flex-start;
+        }
+        .thumbnail {
+            
+    margin: 10px;
+    text-align: center;
+    height: 300px; /* Example fixed height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distributes space inside the thumbnail */
+}
+.thumbnail a {
+            color: inherit; /* Inherit text color from parent */
+            text-decoration: none; /* Remove underline */
+        }
+        .thumbnail a:hover {
+    color: #ff0000; /* This will make the text color red when hovered over */
+}
+        img {
+            width: 100%; /* Makes the image responsive */
+            max-width: 200px; /* Sets a maximum width for the images */
+            height: auto; /* Keeps the aspect ratio of the images */
+        }
+        #static-content {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+}
 
+.person {
+    margin: 70px; /* Adjust as needed */
+    margin-top: 150px;
 
+}
+        
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['\\(','\\)']],
+          displayMath: [['\\[','\\]']],
+          processEscapes: true
+        }
+      });
+    </script>
 
-    </p>
-</div>
+<header> آفاق الفيزياء</header>
+<ul class="tabs">
+    <a class="tab" href="../index.html">الرئيسية</a>
+    
+</ul>
+</head>
+<script>
+    function loadContent(page) {
+        const contentArea = document.getElementById('content-area');
+        fetch(page)
+            .then(response => response.text())
+            .then(data => {
+                contentArea.innerHTML = data;
+            })
+            .catch(err => console.log(err));
+    }
+    </script>
+<body>
+    <div id = "static-content">
+        <h2 class="paragraph0_1"> فريق العمل </h2>
+        
+        <div class="person">
+            <img src="reda.png" alt="Person's Name">
+            <h3 class="paragraph0_1">رضا غانم </h3>
+            <h4>باحث في الذكاء اللإصطناعي و علم الروبوتات </h4>
+        </div>
+        <div class="person">
+            <img src="photo.png" alt="Person's Name">
+            <h3 class="paragraph0_1">أسامة سفيان</h3>
+            <h4>باحث في الذكاء اللإصطناعي و الفيزياء النظرية</h4>
+        </div>
+        
+        
+        
+    </div>
+    
+    <footer>&copy; 2024 موسوعة المعرفة. جميع الحقوق محفوظة.</footer>
+</body>
+</html>
+
