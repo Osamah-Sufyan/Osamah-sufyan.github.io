@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Thumbnails</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px 0;
+        }
+        .thumbnail {
+            display: inline-block;
+            margin: 20px;
+            cursor: pointer;
+            text-align: center;
+            width: 300px;
+        }
+        .thumbnail img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .thumbnail h2 {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+        .thumbnail p {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [['\\(','\\)']],
+          displayMath: [['\\[','\\]']],
+          processEscapes: true
+        }
+      });
+    </script>
+</head>
+<script>
+    function loadContent(page) {
+        const contentArea = document.getElementById('content-area');
+        fetch(page)
+            .then(response => response.text())
+            .then(data => {
+                contentArea.innerHTML = data;
+            })
+            .catch(err => console.log(err));
+    }
+    </script>
+<body>
+    <div class="container">
+        <div class="thumbnail" onclick="loadContent('articles/article_2.html')">
+            <img src="thumbnails/article_3.png" alt="Article 1 Thumbnail">
+            <h2>الكهروديناميك الكمي : جوهرة الفيزياء</h2>
+            <p> 
+                \( x = \frac{{-b \pm \sqrt{{b^2 - 4ac}}}}{{2a}} \)
+                النظرية التي لقبت بجوهرة الفيزياء و تعد أكثر النظريات موافقة للتجربة و ذات دقة عالية جدا</p>
+        </div>
+        
+        <div class="thumbnail" onclick="openArticle('article2.html')">
+            <img src="thumbnails/article_2.webp" alt="Article 2 Thumbnail">
+            <h2>كيف يقدم مبدأ عدم اليقين لهايزنبيرج نظرة جديدة للحقيقة</h2>
+            <p>كيف قلبت ميكانيكا الكم فهمنا للواقع و الحقيقة الفيزيائية</p>
+        </div>
+        <!-- Add more thumbnails as needed -->
+    </div>
+
+    <script>
+        function openArticle(articleFile) {
+            window.open('articles/' + articleFile, '_blank');
+        }
+    </script>
+</body>
+</html>
