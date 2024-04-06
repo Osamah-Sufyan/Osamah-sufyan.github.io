@@ -5,50 +5,38 @@
     <meta charset="UTF-8">
 <link rel="stylesheet" href="style.css">
 <title>آفاف الفيزياء </title>
-<script>
-function loadContent(page) {
-    const contentArea = document.getElementById('content-area');
-    fetch(page)
-        .then(response => response.text())
-        .then(data => {
-            contentArea.innerHTML = data;
-            // Tell MathJax to typeset the newly loaded content
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub, contentArea]);
-        })
-        .catch(err => console.log(err));
-}
-</script>
+
+
 </head>
 <body>
 
 <header> آفاق الفيزياء</header>
 
 <ul class="tabs">
-    <li class="tab" onclick="loadContent('main.html')">الرئيسية</li>
-    <li class="tab" onclick="loadContent('team.html')">فريق العمل</li>
-    <li class="tab" onclick="loadContent('articles.html')">جميع المقالات</li>
-    <li class="tab" onclick="loadContent('contact.html')">تواصل معنا</li>
+    <a class="tab" href="main.html">الرئيسية</a>
+    <a class="tab" href="team.html">فريق العمل</a>
+    <a class="tab" href="articles.html">جميع المقالات</a>
+    <a class="tab" href="contact.html">تواصل معنا</a>
 </ul>
 
 <div id="content-area">
     <!-- Content will be loaded here -->
 </div>
-<div>
-    <h2 class="title0"> مجلة آفاق الفيزياء</h2>
+<div id = "static-content">
+    <h2 class="title0"> موسوعة آفاق الفيزياء</h2>
     <p class="paragraph0_1">
-        المجلة الأولى من نوعها في الوطن العربي. تجدون هنا مقالات دورية حول تبسيط الفيزياء و الرياضيات المتقدمة.    
+        الموسوعة الأولى من نوعها في الوطن العربي. تجدون هنا مقالات دورية حول تبسيط الفيزياء و الرياضيات المتقدمة.    
         
         
     </p>
     
 </div>
-<div id="latex-formula">
-    \( x = \frac{{-b \pm \sqrt{{b^2 - 4ac}}}}{{2a}} \)
-</div>
 
 
 
-<footer>&copy; 2024 مجلة المعرفة. جميع الحقوق محفوظة.</footer>
 
+<footer>&copy; 2024 موسوعة المعرفة. جميع الحقوق محفوظة.</footer>
+
+    
 </body>
 </html>

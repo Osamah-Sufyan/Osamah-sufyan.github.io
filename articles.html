@@ -1,43 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="rtl" lang="ar"><head>
+    <script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<title>آفاف الفيزياء </title>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Article Thumbnails</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+        
         .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px 0;
+            display: flex; /* Activates Flexbox layout for its children */
+            flex-wrap: wrap; /* Allows items to wrap onto the next line if the space is tight */
+            justify-content: space-around; /* Distributes space around items for a nice padding effect */
+            align-items: flex-start;
         }
         .thumbnail {
-            display: inline-block;
-            margin: 20px;
-            cursor: pointer;
-            text-align: center;
-            width: 300px;
+            
+    margin: 10px;
+    text-align: center;
+    height: 300px; /* Example fixed height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distributes space inside the thumbnail */
+}
+.thumbnail a {
+            color: inherit; /* Inherit text color from parent */
+            text-decoration: none; /* Remove underline */
         }
-        .thumbnail img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        .thumbnail a:hover {
+    color: #ff0000; /* This will make the text color red when hovered over */
+}
+        img {
+            width: 100%; /* Makes the image responsive */
+            max-width: 200px; /* Sets a maximum width for the images */
+            height: auto; /* Keeps the aspect ratio of the images */
         }
-        .thumbnail h2 {
-            margin-top: 10px;
-            font-size: 1.2em;
-        }
-        .thumbnail p {
-            margin-top: 5px;
-            font-size: 0.9em;
-            color: #666;
-        }
+        
     </style>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML"></script>
@@ -50,6 +50,8 @@
         }
       });
     </script>
+
+<header> آفاق الفيزياء</header>
 </head>
 <script>
     function loadContent(page) {
@@ -63,27 +65,31 @@
     }
     </script>
 <body>
-    <div class="container">
-        <div class="thumbnail" onclick="loadContent('articles/article_2.html')">
-            <img src="thumbnails/article_3.png" alt="Article 1 Thumbnail">
-            <h2>الكهروديناميك الكمي : جوهرة الفيزياء</h2>
-            <p> 
-                \( x = \frac{{-b \pm \sqrt{{b^2 - 4ac}}}}{{2a}} \)
-                النظرية التي لقبت بجوهرة الفيزياء و تعد أكثر النظريات موافقة للتجربة و ذات دقة عالية جدا</p>
-        </div>
+    <div id = "static-content">
+        <h2 style="font-size: 50px;">  جميع المقالات </h2>
+        <p class="paragraph0_1">
+            
+            
+        </p>
         
-        <div class="thumbnail" onclick="openArticle('article2.html')">
-            <img src="thumbnails/article_2.webp" alt="Article 2 Thumbnail">
-            <h2>كيف يقدم مبدأ عدم اليقين لهايزنبيرج نظرة جديدة للحقيقة</h2>
-            <p>كيف قلبت ميكانيكا الكم فهمنا للواقع و الحقيقة الفيزيائية</p>
+    </div>
+    <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+        <div class="thumbnail">
+            <a href="articles/article_2.html">
+                <img src="thumbnails/article_3.png" alt="Article 1 Thumbnail">
+                <h2>الكهروديناميك الكمي : جوهرة الفيزياء</h2>
+                <p>النظرية التي لقبت بجوهرة الفيزياء و تعد أكثر النظريات موافقة للتجربة و ذات دقة عالية جدا</p>
+            </a>
+        </div>
+        <div class="thumbnail">
+            <a href="articles/article_3.html">
+                <img src="thumbnails/article_2.webp" alt="Article 2 Thumbnail">
+                <h2>كيف يقدم مبدأ عدم اليقين لهايزنبيرج نظرة جديدة للحقيقة</h2>
+                <p>كيف قلبت ميكانيكا الكم فهمنا للواقع و الحقيقة الفيزيائية</p>
+            </a>
         </div>
         <!-- Add more thumbnails as needed -->
     </div>
-
-    <script>
-        function openArticle(articleFile) {
-            window.open('articles/' + articleFile, '_blank');
-        }
-    </script>
+    <footer>&copy; 2024 موسوعة المعرفة. جميع الحقوق محفوظة.</footer>
 </body>
 </html>
