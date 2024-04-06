@@ -23,6 +23,18 @@ header {
     background-color: #444;
     overflow: hidden;
 }
+@media (max-width: 600px) {
+    .tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tab {
+        padding: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+}
 #latex-formula {
     font-size: 50px;
     text-align: center;
