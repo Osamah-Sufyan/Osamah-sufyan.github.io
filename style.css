@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('href="https://fonts.googleapis.com/css2?family=Blaka+Ink&family=Cairo+Play:wght@200..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Blaka+Ink&family=Cairo+Play");
+
 
 
 body {
@@ -35,6 +38,27 @@ header {
         text-align: center;
     }
 }
+
+.nav {
+    display: flex; /* Make the nav a flex container */
+    justify-content: center; /* Distribute the space around the items */
+    border: 2px solid #000; /* Change the color as needed */
+    background-color: #94c3ad; /* Change the color as needed */
+    padding: 10px; /* Adjust as needed */
+    list-style-type: none; /* Remove bullet points */
+}
+
+.nav-item {
+    font-size: 30px;
+    display: block; /* Make the links block elements */
+    padding: 5px; /* Add some padding */
+    text-decoration: none; /* Remove underline */
+    color: #000; /* Change the color as needed */
+    border: 1px solid #000; /* Add border */
+    margin: 10px 0; /* Add some margin */
+    margin-left: 10px;
+    font-family: "Cairo Play", sans-serif;
+}
 #latex-formula {
     font-size: 50px;
     text-align: center;
@@ -48,6 +72,8 @@ header {
 font-family: "Amiri", serif;
 font-size: 50px;
 margin-bottom: 0;
+
+
 }
 .tab {
     float: left;
@@ -87,8 +113,12 @@ header {
 }
 .container {
     width: 80%;
-    margin: auto;
+    
     padding: 20px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
 }
 .article {
     background-color: #f9f9f9;
@@ -108,3 +138,29 @@ h1 {
     border: 2px solid #000; /* Change the color as needed */
     padding: 10px; /* Adjust as needed */
 }
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 20px; /* Increase the padding */
+    font-size: 25px; /* Increase the font size */
+    margin-bottom: 10px;
+}
+
+
+.contact-form button {
+    padding: 20px 40px; /* Increase the padding */
+    font-size: 30px; /* Increase the font size */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+footer {
+    position: relative; /* Add this line */
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+

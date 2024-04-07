@@ -63,9 +63,11 @@
     </script>
 
 <header> آفاق الفيزياء</header>
-<ul class="tabs">
-    <a class="tab" href="../index.html">الرئيسية</a>
-    
+<ul class="nav">
+    <li><a class="nav-item" href="index.html">الرئيسية</a></li>
+    <li><a class="nav-item" href="team.html">فريق العمل</a></li>
+    <li><a class="nav-item" href="articles.html">جميع المقالات</a></li>
+    <li><a class="nav-item" href="contact.html">تواصل معنا</a></li>
 </ul>
 </head>
 <script>
@@ -80,17 +82,53 @@
     }
     </script>
 <body>
-    <p style="font-size: 60px;">  
-
-        لإرسال مقالات للنشر او الإنظمام لفريق الموسوعة يرجى التواصل عبر الإيميل
-        physicshori@gmail.com
-
-
-
-    </p>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+        .contact-form {
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="font-family: Cairo Play"> تواصل معنا</h1>
+        <h2> يمكنكم التواصل معنا عبر الإيميل لإرسال مقالات لنشرهاعلى الموقع.</h2>
+        <h3 style="font-size: 30px;"> physicshori@gmail.com</h3>
+        
+        <form class="contact-form">
+            <input type="text" name="name" placeholder="الإسم" required>
+            <input type="email" name="email" placeholder="الإيميل" required>
+            <textarea name="message" placeholder="أكتب رسالتك هنا" required></textarea>
+            <button type="إرسال">إرسال</button>
+        </form>
+    </div>
     
     
-    <footer>&copy; 2024 موسوعة المعرفة. جميع الحقوق محفوظة.</footer>
+    
+    <footer>&copy; 2024 موسوعة آفاق الفيزياء. جميع الحقوق محفوظة.</footer>
 </body>
 </html>
 
