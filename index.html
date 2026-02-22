@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Osamah Notes | Personal Blog</title>
+    <meta
+      name="description"
+      content="A simple personal blog about coding, systems, and everyday curiosity."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-shape bg-shape-one" aria-hidden="true"></div>
+    <div class="bg-shape bg-shape-two" aria-hidden="true"></div>
+
+    <header class="site-header container">
+      <a href="index.html" class="brand">Osamah Notes</a>
+      <nav class="nav-links">
+        <a href="#posts">Posts</a>
+        <a href="#about">About</a>
+        <a href="#newsletter">Newsletter</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero container reveal">
+        <p class="hero-kicker">Personal Blog</p>
+        <h1>Small thoughts on code, design, and building with intent.</h1>
+        <p class="hero-subtext">
+          I write short practical notes from projects I ship and lessons I learn.
+          No noise, no fluff, just useful reflections.
+        </p>
+        <a href="#posts" class="btn">Read Latest Posts</a>
+      </section>
+
+      <section id="posts" class="posts container">
+        <div class="section-heading reveal">
+          <h2>Recent Writing</h2>
+          <p>Fresh notes and mini essays from my weekly publishing routine.</p>
+        </div>
+
+        <article class="featured-post reveal">
+          <p class="post-meta">February 22, 2026 · 5 min read</p>
+          <h3>Designing for Focus in a Distracted Web</h3>
+          <p>
+            How I strip interfaces down to the essentials while still making them
+            feel expressive and memorable.
+          </p>
+          <a href="posts/designing-for-focus.html" class="text-link">Read article</a>
+        </article>
+
+        <div class="post-grid">
+          <article class="post-card reveal">
+            <p class="post-meta">February 10, 2026 · 4 min read</p>
+            <h3>My Lightweight Writing Workflow</h3>
+            <p>
+              A simple system for capturing ideas, drafting quickly, and shipping
+              posts consistently.
+            </p>
+            <a href="posts/writing-workflow.html" class="text-link">Read article</a>
+          </article>
+
+          <article class="post-card reveal">
+            <p class="post-meta">January 29, 2026 · 6 min read</p>
+            <h3>When to Keep JavaScript Minimal</h3>
+            <p>
+              A practical guide for deciding where interactivity adds value and
+              where it only adds maintenance cost.
+            </p>
+            <a href="posts/keep-js-minimal.html" class="text-link">Read article</a>
+          </article>
+
+          <article class="post-card reveal">
+            <p class="post-meta">January 18, 2026 · 3 min read</p>
+            <h3>Three Habits That Improved My CSS</h3>
+            <p>
+              Naming, spacing, and visual rhythm choices that made my frontend
+              code cleaner and easier to evolve.
+            </p>
+            <a href="posts/css-habits.html" class="text-link">Read article</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="about container reveal">
+        <h2>About Me</h2>
+        <p>
+          I am a developer who enjoys building practical web tools. This blog is
+          where I document what works, what fails, and what is worth repeating.
+        </p>
+      </section>
+
+      <section id="newsletter" class="newsletter container reveal">
+        <h2>Get New Posts by Email</h2>
+        <p>One short email when a new article is published.</p>
+        <form class="newsletter-form" action="#" method="post">
+          <label class="sr-only" for="email">Email address</label>
+          <input id="email" type="email" placeholder="you@example.com" required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <p>© 2026 Osamah Notes. Built as a lightweight static site.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
