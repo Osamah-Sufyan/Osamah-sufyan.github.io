@@ -209,12 +209,72 @@ a {
 }
 
 .cv-copy h3 {
-  margin: 0.9rem 0 0.35rem;
+  margin: 1rem 0 0.45rem;
   font-size: 0.98rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.25rem;
 }
 
 .cv-copy p {
   margin: 0.3rem 0;
+}
+
+.cv-summary {
+  margin-bottom: 0.85rem;
+}
+
+.cv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.cv-entry {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0.8rem;
+  border: 1px solid var(--line);
+  background: #fffdf8;
+  border-radius: 4px;
+  padding: 0.55rem 0.65rem;
+}
+
+.cv-date {
+  margin: 0;
+  font-family: "Space Mono", monospace;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.cv-entry-body h4 {
+  margin: 0;
+  font-family: "Space Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.cv-org {
+  margin: 0.12rem 0 0.35rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.about .cv-org.cv-org-pink {
+  color: #ff4fa3;
+}
+.about .cv-org.cv-org-blue {
+  color: #6f03ce;
+}
+
+
+.cv-entry ul {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.cv-entry li {
+  margin: 0.2rem 0;
+  color: var(--muted);
 }
 
 .cv-image-placeholder {
@@ -233,6 +293,15 @@ a {
   color: var(--muted);
   font-family: "Space Mono", monospace;
   font-size: 0.83rem;
+}
+
+.cv-image {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
 }
 
 .newsletter-form {
@@ -332,6 +401,11 @@ a {
 
   .cv-layout {
     grid-template-columns: 1fr;
+  }
+
+  .cv-entry {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
   }
 
   .cv-image-placeholder {
