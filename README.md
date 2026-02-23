@@ -4,10 +4,13 @@ Simple static personal blog with a responsive layout, sample posts, and light an
 
 ## Files
 
-- `index.html`: Homepage with hero, post list, about, and newsletter section.
-- `styles.css`: Theme, layout, responsive behavior, and animations.
+- `index.html`: Homepage.
+- `posts.html`: Dedicated posts listing page.
+- `about.html`: Dedicated CV/about page.
+- `newsletter.html`: Dedicated newsletter page.
+- `styles.css`: Theme and responsive layout.
 - `script.js`: Scroll reveal and newsletter button interaction.
-- `posts/*.html`: Sample article pages.
+- `posts/*.html`: Individual article pages.
 
 ## Run locally
 

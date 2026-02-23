@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>When to Keep JavaScript Minimal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;family=Bitter:wght@400;600;700&amp;display=swap"
       rel="stylesheet"
@@ -11,6 +13,16 @@
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
+    <header class="site-header container">
+      <a href="../index.html" class="brand">Osamah Notes</a>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../posts.html">Posts</a>
+        <a href="../about.html">About</a>
+        <a href="../newsletter.html">Newsletter</a>
+      </nav>
+    </header>
+
     <main class="container">
       <article class="post-template reveal visible">
         <p class="post-meta">January 29, 2026 · 6 min read</p>
@@ -23,8 +35,14 @@
           Minimal JavaScript means fewer bugs, better performance, and simpler
           long-term maintenance. I only add scripts where users clearly benefit.
         </p>
-        <p><a href="../index.html">← Back to homepage</a></p>
+        <p><a href="../posts.html">← Back to posts</a></p>
       </article>
     </main>
+
+    <footer class="site-footer container">
+      <p>© 2026 Osamah Notes. Built as a lightweight static site.</p>
+    </footer>
+
+    <script src="../script.js"></script>
   </body>
 </html>

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gödel Numbering: Turning Syntax into Arithmetic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;family=Bitter:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+
+    <!-- Optional: If your site already loads MathJax elsewhere, you can remove this block. -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"], ["$", "$"]],
+          displayMath: [["\\[", "\\]"], ["$$", "$$"]],
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+        },
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+  </head>
+
+  <body>
+    <header class="site-header container">
+      <a href="../index.html" class="brand">Osamah Sufyan</a>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">CV</a>
+        <a href="../posts.html">Blog</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <article class="post-template reveal visible">
+        <p class="post-meta">February 23, 2026 · 8 min read</p>
+        <h1>Gödel Numbering: Turning Syntax into Arithmetic</h1>
+
+        <p>
+          I want to share with you an interesting method: a way to convert
+          symbols, formulas, and even entire proofs into ordinary natural numbers.
+          This technique is called <strong>Gödel numbering</strong>, and it sits at
+          the heart of why formal systems can (to a surprising extent) talk about
+          themselves.
+        </p>
+
+        <p>
+          The headline idea is almost playful: treat a mathematical expression as
+          a finite string, then encode that string as a single integer. Once you
+          can do that, meta-mathematical questions like “is this a valid proof?”
+          become questions about numbers. That bridge—from syntax to arithmetic—is
+          exactly what Gödel exploited in his incompleteness theorems.
+        </p>
+
+        <h2>1. The Goal: Make Syntax Numeric</h2>
+        <p>
+          A formal system has a finite alphabet of symbols: logical connectives,
+          quantifiers, parentheses, and symbols for arithmetic such as \(0\),
+          successor \(S\), addition \(+\), multiplication \(\times\), and equality
+          \(=\). A formula is just a finite sequence of such symbols.
+        </p>
+
+        <p>
+          Gödel numbering assigns:
+          <strong>(i)</strong> a unique integer code to each symbol, and then
+          <strong>(ii)</strong> a unique integer to each finite sequence of symbol
+          codes. If we can do this in a computable and reversible way, then every
+          formula has a numeric “name” inside arithmetic.
+        </p>
+
+        <h2>2. A Classic Encoding via Prime Factorization</h2>
+        <p>
+          One clean way to encode a sequence uses the uniqueness of prime
+          factorization. Start with a coding of symbols:
+        </p>
+
+        <ul>
+          <li>\(c(\texttt{0}) = 1\)</li>
+          <li>\(c(\texttt{S}) = 2\)</li>
+          <li>\(c(\texttt{+}) = 3\)</li>
+          <li>\(c(\texttt{=}) = 4\)</li>
+          <li>\(\dots\)</li>
+        </ul>
+
+        <p>
+          Now take a formula as a sequence of symbols
+          \(\sigma_1, \sigma_2, \dots, \sigma_n\). Define its Gödel number by:
+        </p>
+
+        <p>
+          \[
+            G(\sigma_1 \sigma_2 \cdots \sigma_n)
+            \;=\;
+            2^{c(\sigma_1)} \cdot 3^{c(\sigma_2)} \cdot 5^{c(\sigma_3)}
+            \cdots p_n^{c(\sigma_n)},
+          \]
+        </p>
+
+        <p>
+          where \(p_n\) is the \(n\)-th prime. Because every integer has a unique
+          prime factorization, the sequence can be recovered uniquely from the
+          exponents. In other words, this mapping is injective: different strings
+          yield different numbers.
+        </p>
+
+        <p>
+          This is not the only possible encoding—many encodings work. What matters
+          is that the encoding is systematic and computable, so that operations on
+          strings correspond to arithmetical operations on their Gödel numbers.
+        </p>
+
+        <h2>3. From “Strings” to “Properties of Numbers”</h2>
+        <p>
+          Once formulas are numbers, statements about formulas become statements
+          about numbers. For example, consider the relation:
+        </p>
+
+        <p>
+          “\(x\) is the Gödel number of a valid proof of the formula with Gödel
+          number \(y\).”
+        </p>
+
+        <p>
+          That relation (call it \(\mathrm{Proof}(x, y)\)) can be expressed in
+          arithmetic, because:
+        </p>
+
+        <ul>
+          <li>
+            We can decode \(x\) into a finite sequence (a purported proof).
+          </li>
+          <li>
+            We can check, step by step, whether each line follows from axioms and
+            inference rules.
+          </li>
+          <li>
+            All of these checks can be implemented by computable functions, and
+            computability can be represented inside arithmetic (via Gödel’s
+            arithmetization).
+          </li>
+        </ul>
+
+        <p>
+          So proof checking—something that looks meta-mathematical—becomes an
+          arithmetical predicate about integers.
+        </p>
+
+        <h2>4. The Key Trick: Self-Reference (Without Handwaving)</h2>
+        <p>
+          The real magic appears when you combine Gödel numbering with a
+          “diagonal” self-reference construction. Roughly, Gödel showed how to
+          construct a sentence \(G\) that (under the encoding) effectively asserts:
+        </p>
+
+        <p style="margin-left: 1rem;">
+          “There does not exist a number \(x\) such that \(\mathrm{Proof}(x, \ulcorner G \urcorner)\).”
+        </p>
+
+        <p>
+          Here \(\ulcorner G \urcorner\) denotes the Gödel number of \(G\). In
+          more symbolic form, the sentence resembles:
+        </p>
+
+        <p>
+          \[
+            G \;\equiv\; \neg \exists x\, \mathrm{Proof}(x, \ulcorner G \urcorner).
+          \]
+        </p>
+
+        <p>
+          If the system is consistent (and sufficiently expressive to do arithmetic),
+          then:
+        </p>
+
+        <ul>
+          <li>
+            \(G\) is <em>true</em> in the standard natural numbers (because indeed
+            there is no valid proof of it inside the system),
+          </li>
+          <li>
+            but \(G\) is <em>not provable</em> within the system (otherwise the
+            system would prove a falsehood about its own proof relation).
+          </li>
+        </ul>
+
+        <p>
+          This is the backbone of the first incompleteness theorem: there exist
+          true statements that the system cannot prove.
+        </p>
+
+        <h2>5. Why Gödel Numbering Matters</h2>
+        <p>
+          Gödel numbering is not just a clever encoding trick. It is the device
+          that makes “the system talks about itself” precise, internal, and
+          arithmetical. Once you can represent formulas and proofs as numbers, you
+          can express meta-statements like:
+        </p>
+
+        <ul>
+          <li>“This formula has a proof.”</li>
+          <li>“This statement is unprovable.”</li>
+          <li>“The system is consistent.”</li>
+        </ul>
+
+        <p>
+          And when those statements live <em>inside</em> arithmetic, unavoidable
+          limitations emerge:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Incompleteness:</strong> no consistent, sufficiently strong
+            system proves all truths about arithmetic.
+          </li>
+          <li>
+            <strong>Second incompleteness:</strong> such a system cannot prove its
+            own consistency (under standard assumptions).
+          </li>
+        </ul>
+
+        <h2>6. A Modern View: Why This Still Shows Up Today</h2>
+        <p>
+          The Gödel-numbering perspective influenced computability theory and the
+          foundations of computer science. The underlying theme—encode programs,
+          proofs, and syntax as data—appears everywhere:
+        </p>
+
+        <ul>
+          <li>programs that manipulate other programs (compilers, interpreters)</li>
+          <li>formal verification and proof assistants</li>
+          <li>computability limits and undecidability results</li>
+          <li>self-reference phenomena in logic and theoretical CS</li>
+        </ul>
+
+        <p>
+          At a conceptual level, Gödel numbering shows that arithmetic is not just
+          about counting. It is expressive enough to model the machinery of formal
+          reasoning itself—and that expressiveness comes with fundamental
+          constraints.
+        </p>
+
+        <h2>Closing</h2>
+        <p>
+          Gödel numbering is the bridge that turns syntax into arithmetic. Once the
+          bridge exists, you can ask arithmetical questions that correspond to
+          meta-mathematical questions about provability. Gödel’s incompleteness
+          theorems are what happens when that bridge is strong enough to carry
+          self-reference.
+        </p>
+
+        <p><a href="../posts.html">← Back to posts</a></p>
+      </article>
+    </main>
+
+    <footer class="site-footer container">
+      <p>© 2026 Osamah Sufyan.</p>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>

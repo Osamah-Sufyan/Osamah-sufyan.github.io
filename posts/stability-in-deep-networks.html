@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamical Systems and Neural Networks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;family=Bitter:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"], ["$", "$"]],
+          displayMath: [["\\[", "\\]"], ["$$", "$$"]],
+        }
+      };
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+  </head>
+
+  <body>
+    <header class="site-header container">
+      <a href="../index.html" class="brand">Osamah Sufyan</a>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">CV</a>
+        <a href="../posts.html">Blog</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <article class="post-template reveal visible">
+        <p class="post-meta">February 23, 2026 · 9 min read</p>
+        <h1>Dynamical Systems Theory and Neural Networks</h1>
+
+        <p>
+          At first glance, neural networks belong to computer science while dynamical systems
+          theory belongs to mathematics and physics. Yet at a deeper level, they speak the same
+          language: the evolution of states under repeated transformation. Once this connection
+          is made explicit, many phenomena in deep learning—training stability, exploding
+          gradients, attractors, memory, and even expressivity—can be reinterpreted through the
+          lens of nonlinear dynamics.
+        </p>
+
+        <p>
+          A dynamical system, in its simplest discrete form, is defined by an iteration
+        </p>
+
+        <p>
+          \[
+            x_{t+1} = F(x_t),
+          \]
+        </p>
+
+        <p>
+          where \(x_t \in \mathbb{R}^n\) is the state at time \(t\), and \(F\) is a nonlinear map.
+          A feedforward neural network with \(L\) layers is structurally identical to such an
+          iteration. If we denote activations by \(h_\ell\), weights by \(W_\ell\), biases by
+          \(b_\ell\), and nonlinearities by \(\sigma\), then each layer obeys
+        </p>
+
+        <p>
+          \[
+            h_{\ell+1} = \sigma(W_\ell h_\ell + b_\ell).
+          \]
+        </p>
+
+        <p>
+          Depth is therefore discrete time. A deep network is a finite-time trajectory of a
+          nonlinear dynamical system in activation space.
+        </p>
+
+        <p>
+          This viewpoint becomes even more literal in recurrent neural networks, where the same
+          transformation is applied repeatedly:
+        </p>
+
+        <p>
+          \[
+            h_{t+1} = \sigma(W h_t + U x_t + b).
+          \]
+        </p>
+
+        <p>
+          Here, the hidden state evolves exactly like a nonlinear dynamical system driven by an
+          input signal \(x_t\). Questions about memory reduce to questions about stability of
+          trajectories and persistence of information in the state.
+        </p>
+
+        <h2>Fixed Points, Attractors, and Representation</h2>
+
+        <p>
+          In dynamical systems theory, a fixed point satisfies
+        </p>
+
+        <p>
+          \[
+            x^* = F(x^*).
+          \]
+        </p>
+
+        <p>
+          Stability is determined by the Jacobian \(DF(x^*)\). If all eigenvalues satisfy
+          \(|\lambda_i| < 1\), the fixed point is locally attracting. In neural networks,
+          similar reasoning governs signal propagation. Consider a deep linear network where
+          \(h_{\ell+1} = W h_\ell\). Then
+        </p>
+
+        <p>
+          \[
+            h_L = W^L h_0.
+          \]
+        </p>
+
+        <p>
+          The eigenvalues of \(W\) determine whether activations vanish, explode, or remain
+          stable as depth increases. The same spectral radius condition that appears in
+          stability theory appears in deep learning under the name of exploding and vanishing
+          gradients.
+        </p>
+
+        <p>
+          Even nonlinear networks can be analyzed by linearizing around trajectories. If we
+          perturb a state \(h_\ell \to h_\ell + \delta h_\ell\), then to first order
+        </p>
+
+        <p>
+          \[
+            \delta h_{\ell+1}
+            =
+            D\sigma(W_\ell h_\ell + b_\ell) \, W_\ell \, \delta h_\ell.
+          \]
+        </p>
+
+        <p>
+          The product of these Jacobians across layers determines gradient flow during
+          backpropagation. From a dynamical perspective, training stability is governed by the
+          Lyapunov exponents of this multiplicative process.
+        </p>
+
+        <h2>Continuous Depth and Neural ODEs</h2>
+
+        <p>
+          When the number of layers becomes large and each transformation becomes small, the
+          discrete iteration approaches a differential equation. If we write
+        </p>
+
+        <p>
+          \[
+            h_{\ell+1} = h_\ell + \Delta t \, f(h_\ell, \theta_\ell),
+          \]
+        </p>
+
+        <p>
+          and take the limit \(\Delta t \to 0\), we obtain
+        </p>
+
+        <p>
+          \[
+            \frac{dh(t)}{dt} = f(h(t), \theta(t)).
+          \]
+        </p>
+
+        <p>
+          This is the foundation of neural ordinary differential equations. The network is no
+          longer a stack of layers but a flow in state space. Expressivity corresponds to the
+          geometry of this flow, and training corresponds to adjusting the vector field
+          \(f\).
+        </p>
+
+        <p>
+          In this setting, concepts such as trajectories, invariant manifolds, and attractors
+          become literal geometric objects shaping representation learning.
+        </p>
+
+        <h2>Loss Landscapes as Gradient Flows</h2>
+
+        <p>
+          Training itself is another dynamical system, this time in parameter space. Gradient
+          descent follows
+        </p>
+
+        <p>
+          \[
+            \theta_{k+1} = \theta_k - \eta \nabla_\theta \mathcal{L}(\theta_k).
+          \]
+        </p>
+
+        <p>
+          In continuous time, this becomes the gradient flow equation
+        </p>
+
+        <p>
+          \[
+            \frac{d\theta}{dt} = - \nabla_\theta \mathcal{L}(\theta).
+          \]
+        </p>
+
+        <p>
+          Critical points satisfy \(\nabla_\theta \mathcal{L} = 0\). Their stability depends on
+          the Hessian \(H = \nabla^2_\theta \mathcal{L}\). If the eigenvalues of \(H\) are
+          positive, the point is locally attracting; if some are negative, it is a saddle.
+          Modern optimization theory in deep learning can therefore be interpreted as studying
+          high-dimensional nonlinear flows.
+        </p>
+
+        <p>
+          Generalization properties are often connected to the geometry of these flows, such as
+          flat versus sharp minima, which correspond to different stability characteristics of
+          the dynamical system in parameter space.
+        </p>
+
+        <h2>Chaos, Expressivity, and Complexity</h2>
+
+        <p>
+          Nonlinear dynamical systems can exhibit chaos when small perturbations grow
+          exponentially. In neural networks, similar sensitivity can increase expressivity but
+          harm trainability. If the product of Jacobians has singular values that grow
+          exponentially with depth, information becomes unstable. If they decay, information
+          disappears.
+        </p>
+
+        <p>
+          Thus, initialization schemes and normalization techniques can be understood as
+          mechanisms for placing the network near a critical regime where dynamics are neither
+          too contractive nor too expansive. In that narrow band, signals propagate without
+          collapse, and gradients remain usable.
+        </p>
+
+        <h2>Closing Perspective</h2>
+
+        <p>
+          Neural networks are not merely function approximators. They are dynamical systems in
+          activation space during inference and dynamical systems in parameter space during
+          training. Stability theory explains gradient behavior. Spectral analysis explains
+          depth scaling. Continuous limits lead to differential equations. Even phenomena such
+          as memory, attractors, and chaos translate directly between the two fields.
+        </p>
+
+        <p>
+          Viewing deep learning through dynamical systems theory does more than provide elegant
+          mathematics. It offers structural insight into why certain architectures work, why
+          others fail, and how geometry governs learning in high dimensions.
+        </p>
+
+        <p><a href="../posts.html">← Back to posts</a></p>
+      </article>
+    </main>
+
+    <footer class="site-footer container">
+      <p>© 2026 Osamah Sufyan.</p>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
