@@ -17,7 +17,10 @@
         tex: {
           inlineMath: [["\\(", "\\)"], ["$", "$"]],
           displayMath: [["\\[", "\\]"], ["$$", "$$"]],
-        }
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+        },
       };
     </script>
     <script
@@ -220,83 +223,101 @@
 
         <h2>Chaos, Expressivity, and Complexity</h2>
 
-<p>
-  Nonlinear dynamical systems are known to exhibit <em>chaos</em> when small perturbations
-  in initial conditions grow exponentially over time. In such systems, trajectories that
-  begin arbitrarily close together can rapidly diverge, making long-term prediction
-  effectively impossible. This phenomenon is not a mere curiosity of abstract mathematics;
-  it is a structural property of systems in which repeated nonlinear transformations
-  amplify tiny differences.
-</p>
+        <p>
+        Nonlinear dynamical systems exhibit <em>chaos</em> when small perturbations
+        grow exponentially over time. If two nearby states differ by \( \delta_0 \),
+        their separation after \( t \) steps may scale like:
+        </p>
 
-<p>
-  Deep neural networks, when viewed through the lens of dynamical systems, share a
-  similar structure. Each layer applies an affine transformation followed by a
-  nonlinearity. Stacking layers corresponds to repeatedly composing nonlinear maps.
-  From this perspective, a deep network is not just a function — it is an iterated
-  dynamical process acting on representations.
-</p>
+        <p style="text-align:center;">
+        \[
+        \|\delta_t\| \approx e^{\lambda t}\|\delta_0\|
+        \]
+        </p><p>
+        Here \( \lambda > 0 \) is a Lyapunov exponent. When \( \lambda \) is positive,
+        arbitrarily small differences amplify exponentially.
+        </p>
 
-<p>
-  The key mathematical object governing this behavior is the <em>Jacobian</em> of the
-  layer transformations. During forward propagation, the product of Jacobian matrices
-  across layers determines how small perturbations in the input evolve as they move
-  deeper into the network. During backpropagation, the same product — transposed —
-  governs how gradient signals flow backward.
-</p>
+        <p>
+        A deep feedforward network with depth \(L\) computes:
+        </p>
 
-<p>
-  If the singular values of this product grow exponentially with depth, then tiny
-  input perturbations are explosively amplified. Representations become extremely
-  sensitive, and gradients can explode. This regime increases raw expressivity —
-  the network can separate inputs with dramatic precision — but at the cost of
-  instability and poor trainability.
-</p>
+        <p style="text-align:center;">
+        \[
+        h^{(l+1)} = \phi\!\left(W^{(l)} h^{(l)} + b^{(l)}\right)
+        \]
+        </p><p>
+        The full network is a composition of maps:
+        </p>
 
-<p>
-  On the other hand, if the singular values decay exponentially, the network becomes
-  strongly contractive. Distinctions between inputs vanish as depth increases.
-  Information about the original signal is progressively erased, and gradients
-  shrink toward zero. This is the familiar <em>vanishing gradient</em> problem:
-  earlier layers receive almost no training signal.
-</p>
+        <p style="text-align:center;">
+        \[
+        f(x) = F^{(L-1)} \circ \cdots \circ F^{(0)}(x)
+        \]
+        </p><p>
+        The Jacobian of the entire network is the product of layer Jacobians:
+        </p>
 
-<p>
-  Between these extremes lies a narrow and delicate regime sometimes described as
-  <em>criticality</em> or the “edge of chaos.” In this regime, the typical singular
-  values of the Jacobian product remain near one. Signals neither explode nor
-  collapse; instead, they propagate stably across many layers. Perturbations are
-  preserved in magnitude while still being transformed in structure. From a learning
-  standpoint, this balance is ideal: representations remain expressive, and gradients
-  remain informative.
-</p>
+        <p style="text-align:center;">
+        \[
+        J_f(x) = J^{(L-1)} \cdots J^{(0)}
+        \]
+        </p><p>
+        If the typical singular value grows exponentially with depth:
+        </p>
 
-<p>
-  Initialization schemes such as carefully scaled random weights can be interpreted
-  as attempts to place the network in this critical regime at the start of training.
-  By controlling variance across layers, they aim to prevent exponential growth or
-  decay of activations and gradients. Likewise, normalization techniques — including
-  batch normalization and layer normalization — dynamically regulate the scale of
-  internal representations, nudging the system back toward stable propagation when
-  it begins to drift.
-</p>
+        <p style="text-align:center;">
+        \[
+        \sigma_{\text{typ}}(J_f) \sim e^{\alpha L}, \quad \alpha > 0
+        \]
+        </p><p>
+        then perturbations and gradients explode. If singular values decay:
+        </p>
 
-<p>
-  In this view, trainability is not merely an optimization issue but a dynamical one.
-  The architecture and initialization define a trajectory space, and learning succeeds
-  when that space lies near a balanced phase where complexity can develop without
-  degenerating into instability.
-</p>
+        <p style="text-align:center;">
+        \[
+        \sigma_{\text{typ}}(J_f) \sim e^{-\alpha L}, \quad \alpha > 0
+        \]
+        </p><p>
+        gradients vanish:
+        </p>
 
-<p>
-  The broader insight is that expressivity and stability are in tension. Networks
-  capable of highly nonlinear transformations naturally flirt with chaotic dynamics.
-  The art of deep learning lies in harnessing that expressive power while preventing
-  the exponential amplification or decay that would render training ineffective.
-  Effective design places the system close enough to chaos to be rich, but far enough
-  from it to remain controllable.
-</p>
+        <p style="text-align:center;">
+        \[
+        \left\|
+        \frac{\partial \mathcal{L}}{\partial h^{(0)}}
+        \right\|
+        \approx
+        \|J_f^\top\|
+        \left\|
+        \frac{\partial \mathcal{L}}{\partial h^{(L)}}
+        \right\|
+        \to 0
+        \]
+        </p><p>
+        The critical regime corresponds to:
+        </p>
 
+        <p style="text-align:center;">
+        \[
+        \sigma_{\text{typ}}(J_f) \approx 1
+        \]
+        </p><p>
+        Initialization schemes aim to preserve activation variance:
+        </p>
+
+        <p style="text-align:center;">
+        \[
+        \mathrm{Var}\!\left(h^{(l)}\right)
+        \approx
+        \mathrm{Var}\!\left(h^{(l-1)}\right)
+        \]
+        </p><p>
+        In this near-critical regime, networks balance expressivity and stability.
+        Depth creates complexity through iteration, but usable learning depends on
+        keeping Jacobian spectra close to unity rather than drifting into exponential
+        growth or decay.
+        </p>
         <h2>Closing Perspective</h2>
 
         <p>
