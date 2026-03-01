@@ -220,20 +220,82 @@
 
         <h2>Chaos, Expressivity, and Complexity</h2>
 
-        <p>
-          Nonlinear dynamical systems can exhibit chaos when small perturbations grow
-          exponentially. In neural networks, similar sensitivity can increase expressivity but
-          harm trainability. If the product of Jacobians has singular values that grow
-          exponentially with depth, information becomes unstable. If they decay, information
-          disappears.
-        </p>
+<p>
+  Nonlinear dynamical systems are known to exhibit <em>chaos</em> when small perturbations
+  in initial conditions grow exponentially over time. In such systems, trajectories that
+  begin arbitrarily close together can rapidly diverge, making long-term prediction
+  effectively impossible. This phenomenon is not a mere curiosity of abstract mathematics;
+  it is a structural property of systems in which repeated nonlinear transformations
+  amplify tiny differences.
+</p>
 
-        <p>
-          Thus, initialization schemes and normalization techniques can be understood as
-          mechanisms for placing the network near a critical regime where dynamics are neither
-          too contractive nor too expansive. In that narrow band, signals propagate without
-          collapse, and gradients remain usable.
-        </p>
+<p>
+  Deep neural networks, when viewed through the lens of dynamical systems, share a
+  similar structure. Each layer applies an affine transformation followed by a
+  nonlinearity. Stacking layers corresponds to repeatedly composing nonlinear maps.
+  From this perspective, a deep network is not just a function — it is an iterated
+  dynamical process acting on representations.
+</p>
+
+<p>
+  The key mathematical object governing this behavior is the <em>Jacobian</em> of the
+  layer transformations. During forward propagation, the product of Jacobian matrices
+  across layers determines how small perturbations in the input evolve as they move
+  deeper into the network. During backpropagation, the same product — transposed —
+  governs how gradient signals flow backward.
+</p>
+
+<p>
+  If the singular values of this product grow exponentially with depth, then tiny
+  input perturbations are explosively amplified. Representations become extremely
+  sensitive, and gradients can explode. This regime increases raw expressivity —
+  the network can separate inputs with dramatic precision — but at the cost of
+  instability and poor trainability.
+</p>
+
+<p>
+  On the other hand, if the singular values decay exponentially, the network becomes
+  strongly contractive. Distinctions between inputs vanish as depth increases.
+  Information about the original signal is progressively erased, and gradients
+  shrink toward zero. This is the familiar <em>vanishing gradient</em> problem:
+  earlier layers receive almost no training signal.
+</p>
+
+<p>
+  Between these extremes lies a narrow and delicate regime sometimes described as
+  <em>criticality</em> or the “edge of chaos.” In this regime, the typical singular
+  values of the Jacobian product remain near one. Signals neither explode nor
+  collapse; instead, they propagate stably across many layers. Perturbations are
+  preserved in magnitude while still being transformed in structure. From a learning
+  standpoint, this balance is ideal: representations remain expressive, and gradients
+  remain informative.
+</p>
+
+<p>
+  Initialization schemes such as carefully scaled random weights can be interpreted
+  as attempts to place the network in this critical regime at the start of training.
+  By controlling variance across layers, they aim to prevent exponential growth or
+  decay of activations and gradients. Likewise, normalization techniques — including
+  batch normalization and layer normalization — dynamically regulate the scale of
+  internal representations, nudging the system back toward stable propagation when
+  it begins to drift.
+</p>
+
+<p>
+  In this view, trainability is not merely an optimization issue but a dynamical one.
+  The architecture and initialization define a trajectory space, and learning succeeds
+  when that space lies near a balanced phase where complexity can develop without
+  degenerating into instability.
+</p>
+
+<p>
+  The broader insight is that expressivity and stability are in tension. Networks
+  capable of highly nonlinear transformations naturally flirt with chaotic dynamics.
+  The art of deep learning lies in harnessing that expressive power while preventing
+  the exponential amplification or decay that would render training ineffective.
+  Effective design places the system close enough to chaos to be rich, but far enough
+  from it to remain controllable.
+</p>
 
         <h2>Closing Perspective</h2>
 
