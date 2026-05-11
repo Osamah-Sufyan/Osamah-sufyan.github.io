@@ -1,15 +1,17 @@
-# Personal Blog Website
+# Applied AI and Computational Science Group Website
 
-Simple static personal blog with a responsive layout, sample posts, and light animations.
+Static group website for the Hochschule Koblenz Applied AI and Computational
+Science research group.
 
 ## Files
 
-- `index.html`: Homepage.
-- `posts.html`: Dedicated posts listing page.
-- `about.html`: Dedicated CV/about page.
-- `newsletter.html`: Dedicated newsletter page.
+- `index.html`: Group homepage.
+- `about.html`: Team page with professors, students, and Osamah Sufyan's CV.
+- `posts.html`: Research page with recent publications and group articles.
+- `newsletter.html`: Reserved contact page.
+- `assets/*.svg`: Reusable image templates.
 - `styles.css`: Theme and responsive layout.
-- `script.js`: Scroll reveal and newsletter button interaction.
+- `script.js`: Scroll reveal and lightweight form interaction.
 - `posts/*.html`: Individual article pages.
 
 ## Run locally
